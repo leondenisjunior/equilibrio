@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { ThemeProvider } from '@mui/material/styles'
 import './globals.css'
 import theme from './theme'
@@ -8,7 +9,24 @@ import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const menus = []
+const menus = [
+  {
+    label: 'Home',
+    patch: '/',
+  },
+  {
+    label: 'O Grupo eQuilíbrio',
+    patch: '/sobre',
+  },
+  {
+    label: 'Soluções',
+    patch: '/solucoes',
+  },
+  {
+    label: 'Notícias & Eventos',
+    patch: '/noticias-eventos',
+  },
+]
 
 export const metadata = {
   title: 'Create Next App',
@@ -28,20 +46,20 @@ export default function RootLayout({ children }) {
                     <Image alt="logo" src="/logo.svg" width={177} height={50} />
                   </li>
                   <ul className="flex items-center ">
+                    {menus.map(({ label, patch }) => (
+                      <li className="text-lg mr-8" key={patch}>
+                        <a href={patch}>{label}</a>
+                        <KeyboardArrowRightIcon />
+                      </li>
+                    ))}
                     <li>
-                      <a href="#home">Home</a>
-                    </li>
-                    <li>
-                      <a href="#sobre">O Grupo eQuilíbrio</a>
-                    </li>
-                    <li>
-                      <a href="#servicos">Soluções</a>
-                    </li>
-                    <li>
-                      <a href="#contato">Notícias & Eventos</a>
-                    </li>
-                    <li>
-                      <Button variant="contained">Fale Conosco</Button>
+                      <Button
+                        style={{ textTransform: 'none' }}
+                        endIcon={<KeyboardArrowRightIcon />}
+                        variant="contained"
+                      >
+                        Fale Conosco
+                      </Button>
                     </li>
                   </ul>
                 </ul>
