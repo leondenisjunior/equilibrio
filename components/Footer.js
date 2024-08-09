@@ -71,12 +71,16 @@ const menus = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white h-[480px]">
+    <footer className="bg-primary text-white">
       <div className="max-w-[1200px] ml-auto mr-auto h-full">
-        <img src="/logo-background.png" alt="logo" className="absolute" />
-        <div className="pt-[75px] relative">
-          <div className="flex items-center justify-between border-b border-solid border-gray2 pb-8 mb-6">
-            <div>
+        {/*    <img
+          src="/logo-background.png"
+          alt="logo"
+          className="absolute w-full"
+        /> */}
+        <div className="lg:pt-[75px] relative p-5">
+          <div className="flex flex-wrap border-b border-solid border-gray2 pb-4 mb-4">
+            <div className="mb-4 lg:mb-0">
               <Image
                 src="/logo-branca-grande.svg"
                 alt="logo"
@@ -84,10 +88,15 @@ export default function Footer() {
                 height={121}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap lg:flex-row justify-between">
               {menus.map((menu) => (
-                <ul key={menu.name} className="ml-9">
-                  <h3 className="text-2xl font-semibold mb-8">{menu.name}</h3>
+                <ul
+                  key={menu.name}
+                  className="mb-4 lg:mb-0 lg:ml-9 mr-4 lg:mr-0"
+                >
+                  <h3 className="text-2xl font-semibold mb-2 lg:mb-8">
+                    {menu.name}
+                  </h3>
                   {menu.pages.map((page) => (
                     <li key={page.name} className="mb-2">
                       <Link href={page.route}>{page.name}</Link>

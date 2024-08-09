@@ -1,32 +1,14 @@
 import { Montserrat } from 'next/font/google'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { ThemeProvider } from '@mui/material/styles'
 import './globals.css'
 import theme from './theme'
-import { Button } from '@mui/material'
-import Image from 'next/image'
+import { Fab } from '@mui/material'
+import Footer from '@/components/Footer'
+import { WhatsApp } from '@mui/icons-material'
+import Header from '@/components/Header'
 
 const inter = Montserrat({ subsets: ['latin'] })
-
-const menus = [
-  {
-    label: 'Home',
-    patch: '/',
-  },
-  {
-    label: 'O Grupo eQuilíbrio',
-    patch: '/sobre',
-  },
-  {
-    label: 'Soluções',
-    patch: '/solucoes',
-  },
-  {
-    label: 'Notícias & Eventos',
-    patch: '/noticias-eventos',
-  },
-]
 
 export const metadata = {
   title: 'Create Next App',
@@ -39,33 +21,27 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <header className="">
-              <nav className="max-w-7xl ml-auto mr-auto">
-                <ul className="flex items-center justify-between p-5">
-                  <li>
-                    <Image alt="logo" src="/logo.svg" width={177} height={50} />
-                  </li>
-                  <ul className="flex items-center ">
-                    {menus.map(({ label, patch }) => (
-                      <li className="text-lg mr-8" key={patch}>
-                        <a href={patch}>{label}</a>
-                        <KeyboardArrowRightIcon />
-                      </li>
-                    ))}
-                    <li>
-                      <Button
-                        style={{ textTransform: 'none' }}
-                        endIcon={<KeyboardArrowRightIcon />}
-                        variant="contained"
-                      >
-                        Fale Conosco
-                      </Button>
-                    </li>
-                  </ul>
-                </ul>
-              </nav>
-            </header>
-            {children}
+            <Header />
+            <main>
+              {children}
+              <Fab
+                style={{
+                  position: 'fixed',
+                  bottom: 16,
+                  right: 16,
+                }}
+                variant="extended"
+                color="success"
+              >
+                <WhatsApp
+                  className="mr-2"
+                  style={{ textTransform: 'none' }}
+                  color="white"
+                />
+                WhatsApp
+              </Fab>
+            </main>
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

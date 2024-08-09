@@ -12,6 +12,12 @@ const theme = createTheme({
     white: {
       main: '#F3F7FA',
     },
+    success: {
+      main: '#03A350',
+    },
+    gray: {
+      main: '#6F6D71',
+    },
   },
 })
 
